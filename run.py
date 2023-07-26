@@ -84,8 +84,21 @@ print_board("COMPUTER BOARD", computer_board)
 ### PLACE BATTLESHIPS SECTION ###
 def place_player_ships(board, ship_count):
     for i in range(ship_count): #do this for as many ships are set to be placed
-        #while True: #loop until a proper board position is entered, so no positions off the board
+        while True: #loop until a proper board position is entered, so no positions off the board
             print("Place ship number", i+1)
+
+            ship_position = input("Enter ship position (For example: C5) and press Enter: ") # prompt user to input a ship position
+
+            # to get the column of the board, convert letter to uppercase, ord function converts the unicode letter value to unicode integer
+            column = ord(ship_position[0].upper()) - ord('A') 
+
+            #to get the row of the board, we take the int (integer) from user input, and subtract 1 (we count from 0)
+            row = int(ship_position[1:]) - 1
+
+            print("Column:", column, "Row:", row) #print to test these functions are working as intended
+
+            break
+        break
 
 place_player_ships(player_board, 3) #place 3 ships on the player board
 print_board("PLAYER BOARD", player_board)
