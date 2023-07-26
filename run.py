@@ -80,7 +80,7 @@ computer_board = [['~']*10 for _ in range(10)] #create the computer board, 10 wi
 print_board("PLAYER BOARD", player_board)
 print_board("COMPUTER BOARD", computer_board)
 
-
+#bug; cant place to J10
 ### PLACE BATTLESHIPS SECTION ###
 def place_player_ships(board, ship_count):
     for i in range(ship_count): #do this for as many ships are set to be placed
@@ -104,9 +104,8 @@ def place_player_ships(board, ship_count):
             board[row][column] = 'O'
 
             print("Column:", column, "Row:", row) #print to test these functions are working as intended
-
+            print_board("PLAYER BOARD", board) #print the updated player board with the ship placement
             break
-        break
 
 place_player_ships(player_board, 3) #place 3 ships on the player board
 print_board("PLAYER BOARD", player_board)
