@@ -74,13 +74,15 @@ def print_board(board_title, game_board):
 
 #Create two board names
 player_board = [['~']*10 for _ in range(10)] #create the players board, 10 wide with ~ for water
-computer_board = [['~']*10 for _ in range(10)] #create the computer board, 10 wide with ~ for water
+computer_board_hidden = [['~']*10 for _ in range(10)] #create the hidden computer board, 10 wide with ~ for water
+computer_board_display = [['~']*10 for _ in range(10)] #the players view of the computers board
 
 #Print the boards for testing
 print_board("PLAYER BOARD", player_board)
 print_board("COMPUTER BOARD", computer_board)
 
 ### PLACE BATTLESHIPS SECTION ###
+#player ship placement
 def place_player_ships(board, ship_count):
     for i in range(ship_count): #do this for as many ships are set to be placed
         while True: #loop until a proper board position is entered, so no positions off the board
@@ -88,8 +90,9 @@ def place_player_ships(board, ship_count):
 
             ship_position = input("Enter a ship position (For example: C5) and press Enter: ") # prompt user to input a ship position
 
+            #need to rethink this validation if i add a user option to change board size
             #Input Validation: check users input is a letter, then a digit, and the digit is between 1-26
-            if not ship_position[0].isalpha() or not ship_position[1:].isdigit() or not 1 <= int(ship_position[1:]) <=26:
+            if not ship_position[0].isalpha() or not ship_position[1:].isdigit() or not 1 <= int(ship_position[1:]) <=10:
                 print("Oh no! Thats not quite right! Try to type it again, just a letter and number, like c5: ")
                 continue
 
@@ -108,3 +111,5 @@ def place_player_ships(board, ship_count):
 
 place_player_ships(player_board, 3) #place 3 ships on the player board
 print_board("PLAYER BOARD", player_board)
+
+#computer ship placement
