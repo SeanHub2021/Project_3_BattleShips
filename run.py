@@ -35,9 +35,9 @@ V1;
 # Global variable to define the board itself. Now displaying two boards.  
 def print_board(board_title, game_board):
     print(board_title)
-    print ('   A B C D E F G H I J K L M N O') #15 by 15, so 15 letters = A-O, with a blank at the start for row
-    print ('---------------------------------') #top line of the board to seperate letters
-    board = [['~']*15 for _ in range(15)] #create the board with ~ wave symbol to represent water
+    print ('   A B C D E F G H I J') #10 by 10, so 10 letters = A-J, with a blank at the start for row
+    print ('-----------------------') #top line of the board to seperate letters
+    board = [['~']*10 for _ in range(10)] #create the board with ~ wave symbol to represent water
     
     row_number = 1 #first row = 1
     for row in game_board: 
@@ -55,8 +55,8 @@ def print_board(board_title, game_board):
     print()
 
 #Create two board names
-player_board = [['~']*15 for _ in range(15)] #create the players board, 15 wide with ~ for water
-computer_board = [['~']*15 for _ in range(15)] #create the computer board, 15 wide with ~ for water
+player_board = [['~']*10 for _ in range(10)] #create the players board, 15 wide with ~ for water
+computer_board = [['~']*10 for _ in range(10)] #create the computer board, 15 wide with ~ for water
 
 #Print the boards for testing
 print_board("PLAYER BOARD", player_board)
