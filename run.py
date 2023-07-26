@@ -89,6 +89,11 @@ def place_player_ships(board, ship_count):
 
             ship_position = input("Enter ship position (For example: C5) and press Enter: ") # prompt user to input a ship position
 
+            #check users input is 2 letters, letter first & number second;
+            if len(ship_position) != 2 or not ship_position[0].isalpha() or not ship_position[1].isdigit():
+                print("Oh no! Thats not quite right! Try to type it again, just a letter and number, like c5: ")
+                continue
+
             # to get the column of the board, convert letter to uppercase, ord function converts the unicode letter value to unicode integer
             column = ord(ship_position[0].upper()) - ord('A') 
 
