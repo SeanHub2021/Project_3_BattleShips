@@ -87,7 +87,7 @@ def place_player_ships(board, ship_count):
         while True: #loop until a proper board position is entered, so no positions off the board
             print("Place ship number", i+1)
 
-            ship_position = input("Enter ship position (For example: C5) and press Enter: ") # prompt user to input a ship position
+            ship_position = input("Enter a ship position (For example: C5) and press Enter: ") # prompt user to input a ship position
 
             #check users input is 2 letters, letter first & number second;
             if len(ship_position) != 2 or not ship_position[0].isalpha() or not ship_position[1].isdigit():
@@ -99,6 +99,9 @@ def place_player_ships(board, ship_count):
 
             #to get the row of the board, we take the int (integer) from user input, and subtract 1 (we count from 0)
             row = int(ship_position[1:]) - 1
+
+            #change the cell in the player board to represent the placed ship using an "O" 
+            board[row][column] = 'O'
 
             print("Column:", column, "Row:", row) #print to test these functions are working as intended
 
