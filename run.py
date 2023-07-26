@@ -80,7 +80,6 @@ computer_board = [['~']*10 for _ in range(10)] #create the computer board, 10 wi
 print_board("PLAYER BOARD", player_board)
 print_board("COMPUTER BOARD", computer_board)
 
-#bug; cant place to J10
 ### PLACE BATTLESHIPS SECTION ###
 def place_player_ships(board, ship_count):
     for i in range(ship_count): #do this for as many ships are set to be placed
@@ -89,8 +88,8 @@ def place_player_ships(board, ship_count):
 
             ship_position = input("Enter a ship position (For example: C5) and press Enter: ") # prompt user to input a ship position
 
-            #check users input is 2 letters, letter first & number second;
-            if len(ship_position) != 2 or not ship_position[0].isalpha() or not ship_position[1].isdigit():
+            #Input Validation: check users input is a letter, then a digit, and the digit is between 1-26
+            if not ship_position[0].isalpha() or not ship_position[1:].isdigit() or not 1 <= int(ship_position[1:]) <=26:
                 print("Oh no! Thats not quite right! Try to type it again, just a letter and number, like c5: ")
                 continue
 
