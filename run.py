@@ -79,7 +79,7 @@ computer_board_display = [['~']*10 for _ in range(10)] #the players view of the 
 
 #Print the boards for testing
 print_board("PLAYER BOARD", player_board)
-print_board("COMPUTER BOARD", computer_board)
+print_board("COMPUTER BOARD", computer_board_display)
 
 ### PLACE BATTLESHIPS SECTION ###
 #player ship placement
@@ -113,3 +113,11 @@ place_player_ships(player_board, 3) #place 3 ships on the player board
 print_board("PLAYER BOARD", player_board)
 
 #computer ship placement
+def place_computer_ships(board, ship_count):
+    for _ in range(ship_count):
+        while True:
+            row = random.randint(0, len(board) -1) #check the 2d list of the board for the 'length' of rows in the board, generate a random integer within it
+            column = random.randint(0, len(board[0]) -1) #check the first row of the board to count the number of columns, and generate a random integer
+
+            if board[row][column] == '~': #check if the random board location is ~ (no ship placement)
+                board[row][column] = '0' #if it is ~, change it to 0 to 'place' the ship
