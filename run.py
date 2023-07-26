@@ -34,8 +34,8 @@ V1;
 
 # Global variable to define the board itself, 
 def print_board():
-    print ('  A B C D E F G H I J K L M N O') #15 by 15, so 15 letters = A-O, with a blank at the start for row
-    print ('-------------------------------') #top line of the board to seperate letters
+    print ('   A B C D E F G H I J K L M N O') #15 by 15, so 15 letters = A-O, with a blank at the start for row
+    print ('---------------------------------') #top line of the board to seperate letters
     board = [['~']*15 for _ in range(15)] #create the board with ~ wave symbol to represent water
     
     row_number = 1 #first row = 1
@@ -43,7 +43,7 @@ def print_board():
         print(row_number, end=' ')
 
         if row_number < 10:
-            print(end='  ') #for single digit rows, an extra space is needed to align correctly
+            print(end=' ') #for single digit rows, an extra space is needed to align correctly
 
         for column in row: #each cell in the row
             print(column, end=' ') #print, but dont move onto the next row
@@ -52,4 +52,4 @@ def print_board():
 
         row_number += 1 #increase the row number by 1
     
-    print_board() #print the board
+print_board() #print the board
