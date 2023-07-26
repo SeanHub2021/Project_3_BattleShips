@@ -31,6 +31,8 @@ V1;
 - Score (ships remaining)
 
 """
+
+### GAME MENU SCREEN SECTION ###
 def print_game_menu(): #creates a menu 'screen' before the board is printed. Placeholder for inputs to add later.
     print("Welcome to BATTLESHIPS!")
     print("Submit Y in the terminal to proceed to the game.")
@@ -47,6 +49,7 @@ while True: #While statement that checks if the menu input returns True, and if 
     if menu_input():
         break 
 
+### CREATE THE BOARD ###
 # Global variable to define the board itself. Now displaying two boards.  
 def print_board(board_title, game_board):
     print(board_title)
@@ -70,12 +73,19 @@ def print_board(board_title, game_board):
     print()
 
 #Create two board names
-player_board = [['~']*10 for _ in range(10)] #create the players board, 15 wide with ~ for water
-computer_board = [['~']*10 for _ in range(10)] #create the computer board, 15 wide with ~ for water
+player_board = [['~']*10 for _ in range(10)] #create the players board, 10 wide with ~ for water
+computer_board = [['~']*10 for _ in range(10)] #create the computer board, 10 wide with ~ for water
 
 #Print the boards for testing
 print_board("PLAYER BOARD", player_board)
 print_board("COMPUTER BOARD", computer_board)
 
 
+### PLACE BATTLESHIPS SECTION ###
+def place_player_ships(board, ship_count):
+    for i in range(ship_count): #do this for as many ships are set to be placed
+        #while True: #loop until a proper board position is entered, so no positions off the board
+            print("Place ship number", i+1)
 
+place_player_ships(player_board, 3) #place 3 ships on the player board
+print_board("PLAYER BOARD", player_board)
