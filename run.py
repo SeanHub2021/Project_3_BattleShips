@@ -31,6 +31,21 @@ V1;
 - Score (ships remaining)
 
 """
+def print_game_menu(): #creates a menu 'screen' before the board is printed. Placeholder for inputs to add later.
+    print("Welcome to BATTLESHIPS!")
+    print("Submit Y in the terminal to proceed to the game.")
+
+def menu_input():
+    user_input = input("Enter your selection: ") #prompts user to input their selection, as per the menu print instructions
+    if user_input.lower() == 'y': #converts user input to lower case, checks for match
+        return True
+    else:
+        return False
+
+while True: #While statement that checks if the menu input returns True, and if it does, breaks the menu loop, proceeds to the board
+    print_game_menu()
+    if menu_input():
+        break 
 
 # Global variable to define the board itself. Now displaying two boards.  
 def print_board(board_title, game_board):
