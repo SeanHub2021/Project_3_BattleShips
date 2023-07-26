@@ -31,6 +31,7 @@ V1;
 - Score (ships remaining)
 
 """
+import random #load python module 'ramdom'
 
 ### GAME MENU SCREEN SECTION ###
 def print_game_menu(): #creates a menu 'screen' before the board is printed. Placeholder for inputs to add later.
@@ -121,3 +122,8 @@ def place_computer_ships(board, ship_count):
 
             if board[row][column] == '~': #check if the random board location is ~ (no ship placement)
                 board[row][column] = '0' #if it is ~, change it to 0 to 'place' the ship
+                print("Computer has placed: ", row+1, chr(column + ord('A'))) #convert the column integer/letter
+            break
+
+place_computer_ships(computer_board_hidden, 3) #place 3 computer ships
+print_board("COMPUTER BOARD (hidden)", computer_board_hidden)
