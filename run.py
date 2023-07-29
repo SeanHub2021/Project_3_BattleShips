@@ -36,7 +36,7 @@ v2:  To Do;
 - add option for user to define grid size
 - add different ship sizes, vertical & horizontal orientation only
 - reorder code so function definitions are at the top, and game logic is afterwards
-- 
+- after hitting a computer battleship, message to user should count how many battleships are remaining and inform the user
 
 """
 import random #load python module 'ramdom'
@@ -138,7 +138,7 @@ print_board("COMPUTER BOARD (hidden)", computer_board_hidden)
 
 ### GAME FUNCTIONS SECTION ###
 # Players Shot
-def player_shoot(board_hidden, board_display):
+def player_shoot(computer_board_hidden, computer_board_display):
     while True:
         shot_position = input("Your turn to fire at the enemy! Please enter a column and row (for example; C1): ") #prompt user for their move
 
@@ -153,10 +153,16 @@ def player_shoot(board_hidden, board_display):
         #to get the row of the board, we take the int (integer) from user input, and subtract 1 (we count from 0)
         row = int(shot_position[1:]) - 1
 
-        #update the cell in computer_board_display at the board location submitted by the user
-        computer_board_display[row][column] = 'x'
-
-        break
+        # check if shot hits a ship ('O') on hidden board
+        if computer_board_hidden[row][column] == 'O':
+            # if it does, change display board to hit 'X'
+            computer_board_display[row][column] = 'X'
+            print("YOU HAVE HIT AN ENEMY BATTLESHIP!")
+        else:
+            #if the shot misses, change the display board wave ~ to M for 'Miss' 
+            computer_board_display[row][column] = 'M'
+            print("YOU MISSED!")
+        break 
 
 #Print the boards for testing
 print_board("PLAYER BOARD", player_board)
