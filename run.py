@@ -40,6 +40,7 @@ v2:  To Do;
 
 """
 import random #load python module 'ramdom'
+import time #load python module 'time' which enables time delayed responses
 
 ### GAME MENU SCREEN SECTION ###
 def print_game_menu(): #creates a menu 'screen' before the board is printed. Placeholder for inputs to add later.
@@ -171,3 +172,15 @@ print_board("COMPUTER BOARD", computer_board_display)
 player_shoot(computer_board_hidden, computer_board_display)
 print_board("PLAYER BOARD", player_board)
 print_board("COMPUTER BOARD", computer_board_display)
+
+def computer_shoot(player_board):
+    print('Computer thinking about their shot...!')
+    time.sleep(3) #3 second delay
+
+    while True
+    #select random position within the player board table for the computers go
+    column = random.randint(0,9)
+    row = random.randint(0,9)
+
+    #checks board position has not already been 'guessed' in previous computer goes
+    if player_board[row][column] not in ['X', 'M']
