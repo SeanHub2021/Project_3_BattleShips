@@ -30,6 +30,14 @@ V1;
 - Input for user to choose grid reference to 'shoot'
 - Score (ships remaining)
 
+
+v2:  To Do;
+- add game instructions to menu screen
+- add option for user to define grid size
+- add different ship sizes, vertical & horizontal orientation only
+- reorder code so function definitions are at the top, and game logic is afterwards
+- 
+
 """
 import random #load python module 'ramdom'
 
@@ -151,5 +159,9 @@ def player_shoot(board_hidden, board_display):
         break
 
 #Print the boards for testing
+print_board("PLAYER BOARD", player_board)
+print_board("COMPUTER BOARD", computer_board_display)
+
+player_shoot(computer_board_hidden, computer_board_display)
 print_board("PLAYER BOARD", player_board)
 print_board("COMPUTER BOARD", computer_board_display)
