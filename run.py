@@ -135,7 +135,21 @@ def player_shoot(board_hidden, board_display):
         shot_position = input("Your turn to fire at the enemy! Please enter a column and row (for example; C1): ") #prompt user for their move
 
         #Input Validation: check users input is a letter, then a digit, and the digit is between 1-26
-            if not ship_position[0].isalpha() or not ship_position[1:].isdigit() or not 1 <= int(ship_position[1:]) <=10:
-                print("Oh no! Thats not quite right! Try to type it again, just a letter and number, like c5: ")
-                continue
+        if not shot_position[0].isalpha() or not shot_position[1:].isdigit() or not 1 <= int(shot_position[1:]) <=10:
+            print("Oh no! Thats not quite right! Try to type it again, just a letter and number, like c5: ")
+            continue
 
+        # to get the column of the board, convert letter to uppercase, ord function converts the unicode letter value to unicode integer
+        column = ord(shot_position[0].upper()) - ord('A') 
+
+        #to get the row of the board, we take the int (integer) from user input, and subtract 1 (we count from 0)
+        row = int(shot_position[1:]) - 1
+
+        #update the cell in computer_board_display at the board location submitted by the user
+        computer_board_display[row][column] = 'x'
+
+        break
+
+#Print the boards for testing
+print_board("PLAYER BOARD", player_board)
+print_board("COMPUTER BOARD", computer_board_display)
