@@ -91,8 +91,8 @@ def place_player_ships(board, ship_count):
 
             ship_position = input("Enter a ship position (For example: C5) and press Enter: ") # prompt user to input a ship position
 
-            #need to rethink this validation if i add a user option to change board size
-            #Input Validation: check users input is a letter, then a digit, and the digit is between 1-26
+            #bug/feature for later - need to rethink this validation if i add a user option to change board size
+            #Input Validation: check users input is a letter, then a digit, and the digit is between 1-10
             if not ship_position[0].isalpha() or not ship_position[1:].isdigit() or not 1 <= int(ship_position[1:]) <=10:
                 print("Oh no! Thats not quite right! Try to type it again, just a letter and number, like c5: ")
                 continue
@@ -127,3 +127,15 @@ def place_computer_ships(board, ship_count):
 
 place_computer_ships(computer_board_hidden, 3) #place 3 computer ships
 print_board("COMPUTER BOARD (hidden)", computer_board_hidden)
+
+### GAME FUNCTIONS SECTION ###
+# Players Shot
+def player_shoot(board_hidden, board_display):
+    while True:
+        shot_position = input("Your turn to fire at the enemy! Please enter a column and row (for example; C1): ") #prompt user for their move
+
+        #Input Validation: check users input is a letter, then a digit, and the digit is between 1-26
+            if not ship_position[0].isalpha() or not ship_position[1:].isdigit() or not 1 <= int(ship_position[1:]) <=10:
+                print("Oh no! Thats not quite right! Try to type it again, just a letter and number, like c5: ")
+                continue
+
