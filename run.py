@@ -201,3 +201,6 @@ def computer_shoot(player_board):
                 break
 
 computer_shoot(player_board)
+
+    def count_hits(board):
+        return sum(row.count('X') for row in board)
