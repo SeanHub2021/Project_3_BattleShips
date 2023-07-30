@@ -177,22 +177,27 @@ def computer_shoot(player_board):
     print('Computer thinking about their shot...!')
     time.sleep(3) #3 second delay
 
-    while True
-    #select random position within the player board table for the computers go
-    column = random.randint(0,9)
-    row = random.randint(0,9)
+    while True:
+        #select random position within the player board table for the computers go
+        column = random.randint(0,9)
+        row = random.randint(0,9)
 
-    #checks board position has not already been 'guessed' in previous computer goes
-    #has prints to test code is working, function needs to fix
-    if player_board[row][column] not in ['X', 'M']
-        if player_board[row][column] == 'O': #if the computer guess hits a ship
-            player_board[row][column] = 'X'
-            print("Computer has shot at position: " + chr(column + ord('A')) + str(row+1))
-            print("The enemy has hit your Battleship!")
-            print_board("PLAYER BOARD", player_board)
-            break
-        else #else its a miss, change ~ to M on the player board
-            player_board[row][column] = 'M'
-            print("The enemy has missed your ships!")
-            print_board("PLAYER BOARD", player_board) 
-            break
+        #checks board position has not already been 'guessed' in previous computer goes
+        #has prints to test code is working, function needs to fix
+        if player_board[row][column] not in ['X', 'M']:
+            if player_board[row][column] == 'O': #if the computer guess hits a ship
+                player_board[row][column] = 'X'
+                print("Computer has shot at position: " + chr(column + ord('A')) + str(row+1))
+                print("The enemy has hit your Battleship!")
+                print_board("PLAYER BOARD", player_board)
+                print_board("COMPUTER BOARD", computer_board_display)
+                break
+            #or its a miss, change ~ to M on the player board
+            else:
+                player_board[row][column] = 'M'
+                print("The enemy has missed your ships!")
+                print_board("PLAYER BOARD", player_board) 
+                print_board("COMPUTER BOARD", computer_board_display)
+                break
+
+computer_shoot(player_board)
