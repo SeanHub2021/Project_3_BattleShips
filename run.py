@@ -32,6 +32,7 @@ V1;
 
 
 v2:  To Do;
+- fix bug where user can shoot the same cell twice
 - add game instructions to menu screen
 - add option for user to define grid size
 - add different ship sizes, vertical & horizontal orientation only
@@ -154,6 +155,9 @@ def player_shoot(computer_board_hidden, computer_board_display):
         #to get the row of the board, we take the int (integer) from user input, and subtract 1 (we count from 0)
         row = int(shot_position[1:]) - 1
 
+        #check if the row has already been shot at
+        if computer_board_display[row][column] in ['M','X']:
+            print("You've already shot at this position! Try again!")
         # check if shot hits a ship ('O') on hidden board
         if computer_board_hidden[row][column] == 'O':
             # if it does, change display board to hit 'X'
@@ -164,6 +168,10 @@ def player_shoot(computer_board_hidden, computer_board_display):
             computer_board_display[row][column] = 'M'
             print("YOU MISSED!")
         break 
+
+    
+        
+    
 
 #Print the boards for testing
 print_board("PLAYER BOARD", player_board)
@@ -202,5 +210,24 @@ def computer_shoot(player_board):
 
 computer_shoot(player_board)
 
-    def count_hits(board):
-        return sum(row.count('X') for row in board)
+#count the number of 'X' (direct) hit in board
+def count_hits(board):
+    return sum(row.count('X') for row in board)
+
+### Main game loop ###
+
+while True:
+    player_shoot(computer_board_hidden, computer_board_display)
+    #after players go, check computer boards for 3 X's, if so game over
+    if count_hits(computer_board_display) == 3:
+        print("VICTORY! You sank all enemy Battleships!")
+        print("GAME OVER - you are the winner!")
+        break
+
+    #after computer go, check player board for 3 X's, if so game over
+    computer_shoot(player_board)
+    if count_hits(player_board) == 3:
+        print("YOU SUFFER DEFEAT AT THE HANDS OF THE ENEMY!")
+        print("GAME OVER - you have lost the game.")
+        break
+
