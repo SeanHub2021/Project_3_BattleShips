@@ -238,14 +238,8 @@ def main():
     print_board("PLAYER BOARD", player_board)
     print_board("COMPUTER BOARD", computer_board_display)
 
-    player_shoot(computer_board_hidden, computer_board_display)
-    print_board("PLAYER BOARD", player_board)
-    print_board("COMPUTER BOARD", computer_board_display)
-
-    computer_shoot(player_board)
-
     while True:
-        player_shoot(computer_board_hidden, computer_board_display)
+        player_shoot(computer_board_display, computer_board_hidden)
 
         if count_hits(computer_board_display) == 3:
             print("VICTORY! You sank all enemy Battleships!")
