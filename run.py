@@ -47,6 +47,12 @@ extra validation
 import random #load python module 'ramdom'
 import time #load python module 'time' which enables time delayed responses
 
+#Create two board names
+player_board = [['~']*10 for _ in range(10)] #create the players board, 10 wide with ~ for water
+computer_board_hidden = [['~']*10 for _ in range(10)] #create the hidden computer board, 10 wide with ~ for water
+computer_board_display = [['~']*10 for _ in range(10)] #the players view of the computers board
+
+
 ### GAME MENU SCREEN SECTION ###
 def print_game_menu(): #creates a menu 'screen' before the board is printed. Placeholder for inputs to add later.
     print("Welcome to BATTLESHIPS!")
@@ -59,10 +65,6 @@ def menu_input():
     else:
         return False
 
-while True: #While statement that checks if the menu input returns True, and if it does, breaks the menu loop, proceeds to the board
-    print_game_menu()
-    if menu_input():
-        break 
 
 ### CREATE THE BOARD ###
 # Global variable to define the board itself. Now displaying two boards.  
@@ -87,14 +89,6 @@ def print_board(board_title, game_board):
         row_number += 1 #increase the row number by 1
     print()
 
-#Create two board names
-player_board = [['~']*10 for _ in range(10)] #create the players board, 10 wide with ~ for water
-computer_board_hidden = [['~']*10 for _ in range(10)] #create the hidden computer board, 10 wide with ~ for water
-computer_board_display = [['~']*10 for _ in range(10)] #the players view of the computers board
-
-#Print the boards for testing
-print_board("PLAYER BOARD", player_board)
-print_board("COMPUTER BOARD", computer_board_display)
 
 ### PLACE BATTLESHIPS SECTION ###
 #player ship placement
@@ -133,9 +127,6 @@ def place_player_ships(board, ship_count):
             print_board("PLAYER BOARD", board) #print the updated player board with the ship placement
             break
 
-place_player_ships(player_board, 3) #place 3 ships on the player board
-print_board("PLAYER BOARD", player_board)
-
 #computer ship placement
 def place_computer_ships(board, ship_count):
     for _ in range(ship_count):
@@ -147,9 +138,6 @@ def place_computer_ships(board, ship_count):
                 board[row][column] = '0' #if it is ~, change it to 0 to 'place' the ship
                 print("Computer has placed: ", row+1, chr(column + ord('A'))) #convert the column integer/letter
             break
-
-place_computer_ships(computer_board_hidden, 3) #place 3 computer ships
-print_board("COMPUTER BOARD (hidden)", computer_board_hidden)
 
 ### GAME FUNCTIONS SECTION ###
 # Players Shot
@@ -191,19 +179,7 @@ def player_shoot(computer_board_hidden, computer_board_display):
             #if the shot misses, change the display board wave ~ to M for 'Miss' 
             computer_board_display[row][column] = 'M'
             print("YOU MISSED!")
-        break 
-
-    
-        
-    
-
-#Print the boards for testing
-print_board("PLAYER BOARD", player_board)
-print_board("COMPUTER BOARD", computer_board_display)
-
-player_shoot(computer_board_hidden, computer_board_display)
-print_board("PLAYER BOARD", player_board)
-print_board("COMPUTER BOARD", computer_board_display)
+        break      
 
 def computer_shoot(player_board):
     print('Computer thinking about their shot...!')
@@ -232,26 +208,54 @@ def computer_shoot(player_board):
                 print_board("COMPUTER BOARD", computer_board_display)
                 break
 
-computer_shoot(player_board)
-
 #count the number of 'X' (direct) hit in board
 def count_hits(board):
     return sum(row.count('X') for row in board)
 
-### Main game loop ###
+#remove code from below; 
+def main():
 
-while True:
+    while True: #While statement that checks if the menu input returns True, and if it does, breaks the menu loop, proceeds to the board
+        print_game_menu()
+        if menu_input():
+            break 
+
+    #Print the boards for testing
+    print_board("PLAYER BOARD", player_board)
+    print_board("COMPUTER BOARD", computer_board_display)
+
+    place_player_ships(player_board, 3) #place 3 ships on the player board
+    print_board("PLAYER BOARD", player_board)
+
+    place_computer_ships(computer_board_hidden, 3) #place 3 computer ships
+    print_board("COMPUTER BOARD (hidden)", computer_board_hidden)
+
+    #Print the boards for testing
+    print_board("PLAYER BOARD", player_board)
+    print_board("COMPUTER BOARD", computer_board_display)
+
     player_shoot(computer_board_hidden, computer_board_display)
-    #after players go, check computer boards for 3 X's, if so game over
-    if count_hits(computer_board_display) == 3:
-        print("VICTORY! You sank all enemy Battleships!")
-        print("GAME OVER - you are the winner!")
-        break
+    print_board("PLAYER BOARD", player_board)
+    print_board("COMPUTER BOARD", computer_board_display)
 
-    #after computer go, check player board for 3 X's, if so game over
     computer_shoot(player_board)
-    if count_hits(player_board) == 3:
-        print("YOU SUFFER DEFEAT AT THE HANDS OF THE ENEMY!")
-        print("GAME OVER - you have lost the game.")
-        break
 
+    ### Main game loop ###
+    while True:
+        player_shoot(computer_board_hidden, computer_board_display)
+        #after players go, check computer boards for 3 X's, if so game over
+        if count_hits(computer_board_display) == 3:
+            print("VICTORY! You sank all enemy Battleships!")
+            print("GAME OVER - you are the winner!")
+            break
+
+        #after computer go, check player board for 3 X's, if so game over
+        computer_shoot(player_board)
+        if count_hits(player_board) == 3:
+            print("YOU SUFFER DEFEAT AT THE HANDS OF THE ENEMY!")
+            print("GAME OVER - you have lost the game.")
+            break
+
+
+if __name__ == '__main__':
+    main()    
