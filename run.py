@@ -149,7 +149,7 @@ def player_shoot(cpu_board_display, cpu_board_display_hidden):
             continue
 
         column = ord(shot_position[0].upper()) - ord('A')
-        row = int(shot_position[1:]) - 1   
+        row = int(shot_position[1:]) - 1
         if not (0 <= column < len(cpu_board_display) or
                 not (0 <= row < len(cpu_board_display))):
             print("Oh no! Thats outside of the board!")
@@ -160,11 +160,9 @@ def player_shoot(cpu_board_display, cpu_board_display_hidden):
             continue
 
         if cpu_board_display_hidden[row][column] == 'O':
-
             cpu_board_display[row][column] = 'X'
             print("YOU HAVE HIT AN ENEMY BATTLESHIP!")
         else:
-
             cpu_board_display[row][column] = 'M'
             print("YOU MISSED!")
         break
