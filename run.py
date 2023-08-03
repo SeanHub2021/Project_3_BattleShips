@@ -39,6 +39,10 @@ v2:  To Do;
 - reorder code so function definitions are at the top, and game logic is afterwards
 - after hitting a computer battleship, message to user should count how many battleships are remaining and inform the user
 
+extra validation
+- check if the user input is part of the board or not
+- check user input is not blank / just enter
+
 """
 import random #load python module 'ramdom'
 import time #load python module 'time' which enables time delayed responses
@@ -101,10 +105,14 @@ def place_player_ships(board, ship_count):
 
             ship_position = input("Enter a ship position (For example: C5) and press Enter: ") # prompt user to input a ship position
 
-            #bug/feature for later - need to rethink this validation if i add a user option to change board size
+            #Input Validation: check users input is not blank / just an enter
+            if not ship_position:
+                print("Oh no! You entered nothing! Try to type it again, just a letter and number, like c5: ")
+                continue
+
             #Input Validation: check users input is a letter, then a digit, and the digit is between 1-10
             if not ship_position[0].isalpha() or not ship_position[1:].isdigit() or not 1 <= int(ship_position[1:]) <=10:
-                print("Oh no! Thats not quite right! Try to type it again, just a letter and number, like c5: ")
+                print("Oh no! Thats not a letter and number within the board! Try to type it again, just a letter and number, like c5: ")
                 continue
 
             # to get the column of the board, convert letter to uppercase, ord function converts the unicode letter value to unicode integer
@@ -112,6 +120,11 @@ def place_player_ships(board, ship_count):
 
             #to get the row of the board, we take the int (integer) from user input, and subtract 1 (we count from 0)
             row = int(ship_position[1:]) - 1
+            
+            #input Validation: check the user input is within the length and height of the board
+            if not (0 <= column < len(board) and 0 <= row < len(board)):
+                print("Oh no! Thats outside the board! Try to type it again, just a letter and number, like c5: ")
+                continue
 
             #change the cell in the player board to represent the placed ship using an "O" 
             board[row][column] = 'O'
@@ -144,9 +157,14 @@ def player_shoot(computer_board_hidden, computer_board_display):
     while True:
         shot_position = input("Your turn to fire at the enemy! Please enter a column and row (for example; C1): ") #prompt user for their move
 
+        #Input Validation: check users input is not blank / just an enter
+        if not shot_position:
+            print("Oh no! you entered nothing! Try to type it again, just a letter and number, like c5: ")
+            continue 
+
         #Input Validation: check users input is a letter, then a digit, and the digit is between 1-26
         if not shot_position[0].isalpha() or not shot_position[1:].isdigit() or not 1 <= int(shot_position[1:]) <=10:
-            print("Oh no! Thats not quite right! Try to type it again, just a letter and number, like c5: ")
+            print("Oh no! That's not a letter and number within the board! Try to type it again, just a letter and number, like c5: ")
             continue
 
         # to get the column of the board, convert letter to uppercase, ord function converts the unicode letter value to unicode integer
@@ -155,9 +173,15 @@ def player_shoot(computer_board_hidden, computer_board_display):
         #to get the row of the board, we take the int (integer) from user input, and subtract 1 (we count from 0)
         row = int(shot_position[1:]) - 1
 
+        #input Validation: check the user input is within the length and height of the board
+        if not (0 <= column < len(computer_board_display) and 0 <= row < len(computer_board_display)):
+            print("Oh no! Thats outside of the board! Try to type it again, just a letter and number, like c5: ")
+            continue
+
         #check if the row has already been shot at
         if computer_board_display[row][column] in ['M','X']:
             print("You've already shot at this position! Try again!")
+            continue 
         # check if shot hits a ship ('O') on hidden board
         if computer_board_hidden[row][column] == 'O':
             # if it does, change display board to hit 'X'
