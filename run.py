@@ -27,7 +27,6 @@ def menu_input():
         return False
 
 
-### CREATE THE BOARD ###
 def print_board(board_title, game_board):
     """
     define the board itself. Now displaying two boards.
@@ -39,7 +38,6 @@ def print_board(board_title, game_board):
     print(board_title)
     print('   A B C D E F G H I J')
     print('-----------------------')
-    board = [['~']*10 for _ in range(10)]
 
     row_number = 1
     for row in game_board:
@@ -77,8 +75,8 @@ def place_player_ships(board, ship_count):
                 print("Try to type it again!")
                 print("just a letter and number, like c5: ")
                 continue
-            if (not ship_position[0].isalpha() or 
-                    not ship_position[1:].isdigit() or 
+            if (not ship_position[0].isalpha() or
+                    not ship_position[1:].isdigit() or
                     not 1 <= int(ship_position[1:]) <= 10):
                 print("Oh no! Thats not a letter and number within the board")
                 print("Try to type it again!")
@@ -114,12 +112,12 @@ def place_computer_ships(board, ship_count):
             row = random.randint(0, len(board) - 1)
             column = random.randint(0, len(board[0]) - 1)
             if board[row][column] == '~':
-                board[row][column] = '0'
+                board[row][column] = 'O'
                 print("Computer has placed: ", row+1, chr(column + ord('A')))
             break
 
 
-def player_shoot(computer_board_hidden, computer_board_display):
+def player_shoot(cpu_board_display, cpu_board_display_hidden):
     """
     # Players Shot
     prompt user for their move
@@ -141,36 +139,35 @@ def player_shoot(computer_board_hidden, computer_board_display):
         if not shot_position:
             print("Oh no! you entered nothing!")
             print("Try to type it again, just a letter and number, like c5: ")
-            continue 
+            continue
 
         if (not shot_position[0].isalpha() or
-            not shot_position[1:].isdigit() or 
-            not 1 <= int(shot_position[1:]) <= 10):
-                print("Oh no! Thats not a letter and number within the board!")
-                print("Type it again, just a letter and number like c5: ")
-                continue
+                not shot_position[1:].isdigit() or
+                not 1 <= int(shot_position[1:]) <= 10):
+            print("Oh no! Thats not a letter and number within the board!")
+            print("Type it again, just a letter and number like c5: ")
+            continue
 
-        column = ord(shot_position[0].upper()) - ord('A')         
-        row = int(shot_position[1:]) - 1
-    
-        if not (0 <= column < len(computer_board_display) or
-                not (0 <= row < len(computer_board_display))):
+        column = ord(shot_position[0].upper()) - ord('A')
+        row = int(shot_position[1:]) - 1   
+        if not (0 <= column < len(cpu_board_display) or
+                not (0 <= row < len(cpu_board_display))):
             print("Oh no! Thats outside of the board!")
             print("Try to type it again, just a letter and number, like c5: ")
             continue
-        if computer_board_display[row][column] in ['M', 'X']:
+        if cpu_board_display[row][column] in ['M', 'X']:
             print("You've already shot at this position! Try again!")
-            continue 
+            continue
 
-        if computer_board_hidden[row][column] == 'O':
+        if cpu_board_display_hidden[row][column] == 'O':
 
-            computer_board_display[row][column] = 'X'
+            cpu_board_display[row][column] = 'X'
             print("YOU HAVE HIT AN ENEMY BATTLESHIP!")
         else:
 
-            computer_board_display[row][column] = 'M'
+            cpu_board_display[row][column] = 'M'
             print("YOU MISSED!")
-        break      
+        break
 
 
 def computer_shoot(player_board):
@@ -190,16 +187,15 @@ def computer_shoot(player_board):
         row = random.randint(0, 9)
 
         if player_board[row][column] not in ['X', 'M']:
-            if player_board[row][column] == 'O': 
+            if player_board[row][column] == 'O':
                 player_board[row][column] = 'X'
                 print("Computer has shot at position: "
-                    + chr(column + ord('A')) 
-                    + str(row + 1))
+                      + chr(column + ord('A'))
+                      + str(row + 1))
                 print("The enemy has hit your Battleship!")
                 print_board("PLAYER BOARD", player_board)
                 print_board("COMPUTER BOARD", computer_board_display)
                 break
-
             else:
                 player_board[row][column] = 'M'
                 print("The enemy has missed your ships!")
@@ -248,9 +244,6 @@ def main():
 
     computer_shoot(player_board)
 
-    """
-    Main game loop
-    """
     while True:
         player_shoot(computer_board_hidden, computer_board_display)
 
