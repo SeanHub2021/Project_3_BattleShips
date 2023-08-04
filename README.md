@@ -1,31 +1,34 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+#BATTLESHIPS GAME
 
-Welcome SeanHub2021,
+##Introduction
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
+Hello there! Welcome to my Python program that serves as a command-line interface (CLI) rendition of the timeless board game Battleships. In this interactive arena, it's you (the user) squaring off against the computer (the enemy), making strategic moves, and guessing the locations of each other's ships.
 
-## Reminders
+Both you (as the player) and the computer get your own boards to place your ships, after which the fun truly begins! The objective is simple yet compelling: Be the first to hit all of your opponent's ships, and victory is yours.
 
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
+So come aboard, brace for some classic naval warfare, and let's see who can outwit the other. Ready to set sail? Let's dive right in!
 
-## Creating the Heroku app
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+##Installation
 
-1. `heroku/python`
-2. `heroku/nodejs`
+You can run this game on any system that has Python 3 installed. No additional packages are required. You can execute the game by running the command:
+python3 run.py
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+##Features
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
+User Input Validation
 
-Connect your GitHub repository and deploy as normal.
+*I've built-in some handy input validation checks in the game. 
+If the user attempts to place a ship or fire a shot outside of the board, or at a location you've already shot at (or a ship is already placed), the game will prompt you to enter a valid location.
 
-## Constraints
+*Computer Opponent
+You'll be facing off against a computer opponent who 'thinks'... and then randomly places their ships and fires shots!
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
+*Dual Board Display
+The game prints both your board and the computer's board after every turn, so you can keep track of all your hits and misses. The computer's board will only display the locations where you've fired shots, not the locations of the computer's ships. The computers board placement is stored on a 'hidden' board that is not printed. 
 
------
-Happy coding!
+#Code Description
+
+*The game is coded in Python, and the game loop runs in the main function. The board setup, ship placement, turns, and checks for wins are all handled within this loop.
+
+*Each function is properly documented, up to scale . Whether you're playing the game or studying the code, there's plenty to learn!
