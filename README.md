@@ -44,21 +44,47 @@ The game prints both your board and the computer's board after every turn, so yo
 User stories that informed the design and functionality of the game
 
 # 	User Stories
-1 	I want to be welcomed by a start screen with name of the game.
-2 	I want to see familiar battleships board designs.
-3 	I want to see my boat.
-4 	I want to see where my missed shots are. 
-5 	I want to see the computers missed shots.
-6 	I dont want to see the computers ships unless i hit them.
-7 	I want some helpful prompts for bugs
-8 	I want to know if i have won or lost the game!
+* 	I want to be welcomed by a start screen with name of the game.
+* 	I want to see familiar battleships board designs.
+* 	I want to see my boat.
+* 	I want to see where my missed shots are. 
+* 	I want to see the computers missed shots.
+* 	I dont want to see the computers ships unless i hit them.
+* 	I want some helpful prompts for bugs.
+* 	I want to know if i have won or lost the game!
+
+User stories for future developments:
+* 	I want to choose the board size.
+* 	I want to see a running score.
+* 	I would like to see a better interface.
+* 	I want the option to play another human.
+*   I want different ship sizes.
 
 ### Test Cases
 
+*   Game start function loops until user enters valid input
+![Testcase_1](/workspace/PythonWIP/readme_images/Test1_gamestartloop.png)
 
-User stories for future developments:
-1 	I want to choose the board size
-2 	I want to see a running score
-3 	I would like to see a better interface
-4 	I want the option to play another human
-5   I want different ship sizes
+*   
+![Testcase_2](/workspace/PythonWIP/readme_images/Test2_shipplacementoffboard.png)
+
+*   User input validation checks if user submission is blank and prompts to enter again with explanation "Oh no! You entered nothing!
+![Testcase_3](/workspace/PythonWIP/readme_images/Test3_shipplacementblank.png)
+
+*   User input validation checks if user submission for ship placement is not valid (not letter, then number 1-10) and prompts user to enter again with explanation "Oh no! Thats not a letter and number within the board!"
+![Testcase_4](/workspace/PythonWIP/readme_images/Test4_shipplacementnotvalid.png)
+
+*   User input validation check after letter & number validation is passed, if user submission for ship placement is within the limits of the board. If user enters letter & number combination that is not, prompts user to resubmit with explanation "Oh no! Thats outside the board!"
+![Testcase_5](/workspace/PythonWIP/readme_images/Test5_shipplacementoffboard.png)
+
+*   The same user input validation checks are re-used for the users shots, with the same explanations. 
+![Testcase_6](/workspace/PythonWIP/readme_images/Test6_usershotvalidation.png)
+
+
+### Future Development plans
+For future developments in this project, I will be looking to;
+* remove the unused function in line 171.
+* add the option for users to choose a board size
+* add different ship sizes
+* add the ability for users to play against other users
+* add more graphical elements to the menu & win/lose screens
