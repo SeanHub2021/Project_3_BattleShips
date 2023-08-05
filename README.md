@@ -63,22 +63,22 @@ User stories for future developments:
 ### Test Cases
 
 *   Game start function loops until user enters valid input
-![Testcase_1](.readme_images/Test1_gamestartloop.png)
+![Testcase_1](.readme_images/Test1_gamestartloop.PNG)
 
 *   User input validation checks if the users ship placement is off the board and prompts user to try again.
-![Testcase_2](.readme_images/Test2_shipplacementoffboard.png)
+![Testcase_2](.readme_images/Test2_shipplacementoffboard.PNG)
 
 *   User input validation checks if user submission is blank and prompts to enter again with explanation "Oh no! You entered nothing!
-![Testcase_3](.readme_images/Test3_shipplacementblank.png)
+![Testcase_3](.readme_images/Test3_shipplacementblank.PNG)
 
 *   User input validation checks if user submission for ship placement is not valid (not letter, then number 1-10) and prompts user to enter again with explanation "Oh no! Thats not a letter and number within the board!"
-![Testcase_4](.readme_images/Test4_shipplacementnotvalid.png)
+![Testcase_4](.readme_images/Test4_shipplacementnotvalid.PNG)
 
 *   User input validation check after letter & number validation is passed, if user submission for ship placement is within the limits of the board. If user enters letter & number combination that is not, prompts user to resubmit with explanation "Oh no! Thats outside the board!"
-![Testcase_5](.readme_images/Test5_shipplacementoffboard.png)
+![Testcase_5](.readme_images/Test5_shipplacementoffboard.PNG)
 
 *   The same user input validation checks are re-used for the users shots, with the same explanations. 
-![Testcase_6](.readme_images/Test6_usershotvalidation.png)
+![Testcase_6](.readme_images/Test6_usershotvalidation.PNG)
 
 
 ### Future Development plans
